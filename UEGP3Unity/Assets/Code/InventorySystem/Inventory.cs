@@ -69,6 +69,10 @@ namespace UEGP3.InventorySystem
 
         void MakeSlotArray()
         {
+            // TODO
+            // FindGameObjectWithTag is a performance heavy method. You call this each frame while the inventory is active (gets called by an Update Loop)
+            // Instead we could search these GameObject once in our Start/Awake call and cache them. Sometimes it is not possible to avoid such calls
+            // but I think for this specific use case we could've avoided it.
             _potionSlots = GameObject.FindGameObjectsWithTag("PotionSlot");           
             _granadeSlots = GameObject.FindGameObjectsWithTag("GranadeSlot");
             _keySlots = GameObject.FindGameObjectsWithTag("KeySlot");
@@ -83,6 +87,10 @@ namespace UEGP3.InventorySystem
                 {
                     if (entry.Key.ItemType == "Potion")
                     {
+                        // TODO
+                        // Same as with other GetComponent-Calls, they're expensive. It would be better to store
+                        // these IvnentorySlots as references in your  _potionSlots array directly.
+                        // Same for the below if branches
                         _potionSlots[0].GetComponent<InventorySlot>().Item = entry.Key;
                         _potionSlots[0].GetComponent<InventorySlot>().ItemCount = entry.Value;
                     }

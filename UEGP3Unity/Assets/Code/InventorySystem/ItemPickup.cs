@@ -14,6 +14,8 @@ namespace UEGP3.InventorySystem
 		
 		private SphereCollider _pickupCollider;
 
+		// TODO
+		// please remember to remove unused variables. This will help with cleaner code in the long run :) 
         GameObject PickupGraphicsObject;
 
         private void Awake()
@@ -25,6 +27,8 @@ namespace UEGP3.InventorySystem
             _pickupCollider.radius = _pickupRange;
 			_pickupCollider.isTrigger = true;
 
+			// TODO
+			// You don't use this variable anywhere else, there is no need to cache it! 
             PickupGraphicsObject = (GameObject)Instantiate(_itemToPickup.ItemMesh, transform);
 
         }

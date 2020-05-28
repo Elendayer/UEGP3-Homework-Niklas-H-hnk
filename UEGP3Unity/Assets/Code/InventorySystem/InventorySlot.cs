@@ -44,6 +44,9 @@ namespace UEGP3.InventorySystem
             tag = tagString;
         }
 
+        // TODO
+        // instead of updating each frame, it is better to write a method for updating the slot
+        // Said method can simply set the values, once they change. This will save valuable CPU cycles
         private void Update()
         {
             DisplayItem();
@@ -68,6 +71,8 @@ namespace UEGP3.InventorySystem
             }
         }
 
+        // TODO
+        // uses item, but doesnt respect inventory count etc.
         void UseItem()
         {
             _item.UseItem();

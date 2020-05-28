@@ -156,8 +156,14 @@ namespace UEGP3.PlayerSystem
                 _currentVerticalVelocity = JumpVelocity;
             }
 
+            // TODO 
+            // Whenever we work with Input it is a good idea to use "GetButton" variations of the Input class, because we can create a button with a unique
+            // name there. If we want to change the control for it later, we can do so, by remapping the assigned key, instead of going through all our code
+            // and changing the keycode
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
+                // TODO
+                // statements like these can be simplified to if (!_dashIsOnCooldown) 
                 if (_dashIsOnCooldown == false)
                 {
                     _dashIsOnCooldown = true;
@@ -168,10 +174,24 @@ namespace UEGP3.PlayerSystem
             }
         }
 
+        // TODO 
+        // Interesting to see the whole dash as a coroutine. I thought of something simpler, where we implement the dash
+        // similar to the jump, with a dash velocity or where we just add the dash velocity to the current forward velocity
+        // I really like the initiative of adding a cooldown time to it. Good job on figuring out how to do it!
+        // You can try to restructure it a bit though, because we do not necessarily need a coroutine for a cooldown:
+        // Instead we can store the cooldownTime in a serialized field as you did and add a private float _lastDashTime
+        // and check if (Time.time > _lastDashTime + _dashCooldown && _dashPressed). If this evaluates true, set
+        // _lastDashTime = Time.time. This ensures that each frame we check the current game time against our cooldown + the last used time.
+        // Another approach would be to have a private float _currentCooldownTime, which you set to _cooldownTime each time the dash is used
+        // and subtract Time.deltaTime from it each frame. If it is <= 0, the dash will be ready again too. I encourage you to try the different
+        // variations and see what works best for you! There are of course even more solutions to this.
+        // In each case it would be a good idea go add a private property "CanDash" that encapsulates the above time check and if dash is pressed.
         private IEnumerator DashCoroutine()
         {
             float t = _dashTime;
 
+            // TODO
+            // this is potentially a bit problematic: If we don't move, we cant dash, because the dash is dependant on our velocity
             Vector3 velocity = _graphicsObject.forward * _currentForwardVelocity + Vector3.up * _currentVerticalVelocity;
 
             _dashIsOnCooldown = true;
@@ -181,7 +201,11 @@ namespace UEGP3.PlayerSystem
                 t -= Time.deltaTime;
 
                 _characterController.Move(velocity * Time.deltaTime);
-               
+                // TODO
+                // i think it would be more appropriate to wait a frame after each move execution, this gives a smoother result
+                // Your dash is very "jumpy", which is a legit solution, but I actually intended a smoothened one. You will still
+                // get full points for this, but the yield return null is suggestion from me, feel free to try it out!
+                yield return null;
             }
 
             yield return new WaitForSeconds(_dashCooldown);
