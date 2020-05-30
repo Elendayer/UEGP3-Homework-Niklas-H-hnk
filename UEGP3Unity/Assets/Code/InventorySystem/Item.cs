@@ -66,6 +66,6 @@ namespace UEGP3.InventorySystem
 		public virtual void UseItem()
 		{
 			OnItemUsed?.Invoke(this);
-		}
+        }
 	}
 }

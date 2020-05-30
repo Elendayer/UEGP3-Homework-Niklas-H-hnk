@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -398,6 +398,44 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 52029612}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &99187356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6346459506548359629, guid: c8c5f6a5eb2576c4a9e021b71867496f,
+    type: 3}
+  m_PrefabInstance: {fileID: 371308082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &99187357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99187356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650010119277c2f468583a94697bedee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useKeyItemAudioEvent: {fileID: 11400000, guid: 5d29cfc97f5f9094c858a02390e90dc7,
+    type: 2}
+  _useDamageableAudioEvent: {fileID: 11400000, guid: f48d47a0011272f428e0827916e1a8f6,
+    type: 2}
+  _usePotionAudioEvent: {fileID: 11400000, guid: b1acbc5914228a443a77cf0f56e189f1,
+    type: 2}
+--- !u!114 &99187358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99187356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a40891f14a14b1459172b56286bdd58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpingAudioEvent: {fileID: 11400000, guid: 17e358dc3ec9dc2488f9b52313cec1ec, type: 2}
+  _landingAudioEvent: {fileID: 11400000, guid: aac783266ffc72f42b8d8fb869ce8ffb, type: 2}
 --- !u!1 &122559098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1478,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.034
+      objectReference: {fileID: 0}
+    - target: {fileID: 7839847982143981905, guid: c8c5f6a5eb2576c4a9e021b71867496f,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9051706688429314664, guid: c8c5f6a5eb2576c4a9e021b71867496f,
         type: 3}

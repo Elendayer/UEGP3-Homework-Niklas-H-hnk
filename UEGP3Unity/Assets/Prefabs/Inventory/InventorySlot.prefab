@@ -551,6 +551,7 @@ MonoBehaviour:
   _itemImage: {fileID: 688328870106325349}
   _itemName: {fileID: 2085570406831061422}
   _itemCount: {fileID: 3495646139910765935}
+  _character: {fileID: 100108, guid: 7d3425a6c7317e048be11c2ff72db69e, type: 3}
 --- !u!1 &8783234945075824128
 GameObject:
   m_ObjectHideFlags: 0
