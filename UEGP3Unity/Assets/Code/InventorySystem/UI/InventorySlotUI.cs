@@ -25,10 +25,8 @@ namespace UEGP3.InventorySystem.UI
 		[Tooltip("Displays how many of the given item are in this slot")] [SerializeField]
 		private TextMeshProUGUI _itemCount = default;
 
-
-        //Character mit den AudioHandlern
         [SerializeField]
-        private GameObject _character;
+        private UseItemAudioHandler audioHandler;
 
         private Button _button;
 		private Item _item;
@@ -36,6 +34,9 @@ namespace UEGP3.InventorySystem.UI
 
 		private void Awake()
 		{
+
+            audioHandler = GameObject.Find("FreeCharacter_01").GetComponent<UseItemAudioHandler>();
+
             // Add onclick event to use the stored item
             _button = GetComponentInChildren<Button>();
 			_button.onClick.AddListener(UseItem);
@@ -147,11 +148,11 @@ namespace UEGP3.InventorySystem.UI
 
 		private void UseItem()
 		{
-			// only use the item if not null
+			// only use the item if not null. Trigger Sound of Used item and the usage of the item
 			if (_item != null)
-            {
+            {               
+                audioHandler.DoUseItemSound(_item.ItemType);
                 _item.UseItem();
-                
             }
         }
 

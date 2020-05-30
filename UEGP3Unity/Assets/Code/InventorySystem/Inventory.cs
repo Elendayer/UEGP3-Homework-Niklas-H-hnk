@@ -71,7 +71,7 @@ namespace UEGP3.InventorySystem
 				_inventoryUI.Hide();
 			}
 			
-			Debug.Log(this);
+			//Debug.Log(this);
 		}
 		
 		/// <summary>

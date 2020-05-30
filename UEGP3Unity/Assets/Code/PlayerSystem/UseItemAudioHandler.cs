@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UEGP3.Core;
 using UnityEngine;
 
-namespace UEGP3.PlayerSystem
+namespace UEGP3.InventorySystem.UI
 {
     [RequireComponent(typeof(AudioSource))]
     public class UseItemAudioHandler : MonoBehaviour
@@ -15,17 +15,17 @@ namespace UEGP3.PlayerSystem
         [Tooltip("The audio event that should be played when the animation event is happening")]
         [SerializeField]
         private ScriptableAudioEvent _useKeyItemAudioEvent;
-        String _keyItemtype = "Key Items";
+        private String _keyItemtype = "Key Items";
 
         [SerializeField]
         private ScriptableAudioEvent _useDamageableAudioEvent;
-        String _damageableItemtype = "Damageables";
+        private String _damageableItemtype = "Damageables";
 
         [SerializeField]
         private ScriptableAudioEvent _usePotionAudioEvent;
-        String _potionItemtype = "Potions";
+        private String _potionItemtype = "Potions";
 
-        private int Itemtypes = 3;
+        private ScriptableAudioEvent _useOtherItemAudioEvent;
 
         private AudioSource _audioSource;
 
@@ -45,21 +45,26 @@ namespace UEGP3.PlayerSystem
         }
 
         // Called as an animation event
-        private void DoUseItemSound(ScriptableObject Itemtype)
+        public void DoUseItemSound(ScriptableObject Itemtype)
         {
-            // Durchsuchung des Dictonaries nach Übereinstimmung des Typen mit den indikators
-            foreach (var element in _useItemAudioEvents)
+            ScriptableAudioEvent value;
+
+            // Durchsuchung des Dictonaries nach Übereinstimmung des Typen mit den Indikators
+            if (_useItemAudioEvents.TryGetValue(Itemtype.name, out value))
             {
-                string Indicator = element.Key;
-                if (Indicator == Itemtype.name)
-                {
-                    PlaySoundForType(element.Value);
-                }
+                PlaySoundForType(value);
             }
+            // Absicherung für den Fall das der Itemtype kein einzigartigen Sound hat
+            else
+            {
+                Debug.Log("There");
+                PlaySoundForType(_useOtherItemAudioEvent);
+            }       
         }
 
         private void PlaySoundForType(ScriptableAudioEvent AudioEventToPlay)
         {
+            Debug.Log(AudioEventToPlay);
             AudioEventToPlay.Play(_audioSource);
         }
     }
