@@ -11,23 +11,25 @@ namespace UEGP3.InventorySystem
 		private Item _itemToPickup;
 		[Tooltip("Range in which the pick up is performed.")] [SerializeField] 
 		private float _pickupRange;
-		
+		[Tooltip("SFX that is being played when items are being picked up")] [SerializeField] 
+		private ScriptableAudioEvent _pickupSFX;
+
+		private AudioSource _audioSource;
 		private SphereCollider _pickupCollider;
 
-        GameObject PickupGraphicsObject;
-
-        private void Awake()
+		private void Awake()
 		{
+			// Change Mesh Collider based on the set pick up
+			GetComponentInChildren<MeshFilter>().mesh = _itemToPickup.ItemMesh;
+			
 			// Get collider on same object
 			_pickupCollider = GetComponent<SphereCollider>();
-
-            // Ensure collider values are set accordingly
-            _pickupCollider.radius = _pickupRange;
+			_audioSource = FindObjectOfType<AudioSource>();
+			
+			// Ensure collider values are set accordingly
+			_pickupCollider.radius = _pickupRange;
 			_pickupCollider.isTrigger = true;
-
-            PickupGraphicsObject = (GameObject)Instantiate(_itemToPickup.ItemMesh, transform);
-
-        }
+		}
 
 		public void Collect(Inventory inventory)
 		{
@@ -37,6 +39,8 @@ namespace UEGP3.InventorySystem
 			// Destroy the pickup once the object has been successfully picked up
 			if (wasPickedUp)
 			{
+				// Play the pickup SFX when picking up the item
+				_pickupSFX.Play(_audioSource);
 				Destroy(gameObject);
 			}
 		}

@@ -1,5 +1,4 @@
-﻿using System;
-using UEGP3.Core;
+﻿using UEGP3.Core;
 using UEGP3.InventorySystem;
 using UnityEngine;
 
@@ -13,14 +12,24 @@ namespace UEGP3.PlayerSystem
 		[Tooltip("Inventory to be used for the player")] [SerializeField] 
 		private Inventory _playerInventory;
 
-        public Inventory PlayerInventory { get => _playerInventory; set => _playerInventory = value; }
+		private void Awake()
+		{
+			// Create inventory
+			_playerInventory.Create();
+		}
 
-        private void Update()
+		private void OnDestroy()
+		{
+			// Destroy ivnentory
+			_playerInventory.Destroy();
+		}
+
+		private void Update()
 		{
 			// Show Inventory if button is pressed
 			if (Input.GetButtonDown("Inventory"))
 			{
-				_playerInventory.ShowInventory();
+				_playerInventory.ToggleInventory();
 			}
 
 			if (Input.GetButtonDown("ItemQuickAccess"))

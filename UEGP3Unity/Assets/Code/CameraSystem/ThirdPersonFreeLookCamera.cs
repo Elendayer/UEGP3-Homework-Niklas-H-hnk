@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UEGP3.PlayerSystem;
 using UnityEngine;
 
 namespace UEGP3.CameraSystem
@@ -7,17 +8,14 @@ namespace UEGP3.CameraSystem
 	{
 		// Constant to describe a full spin around any axis in degree
 		private const float FullSpinDegree = 360f;
-
-        [Tooltip("The Player Graphic roatied by turning.")]
-        [SerializeField]
-        private Transform _playerGraphic;
-
-        [Header("Camera Rig Settings")]
+	
+		[Header("Camera Rig Settings")]
 		[Tooltip("The object that the camera pivots around.")]
 		[SerializeField]
 		private Transform _cameraPivot;
+		[SerializeField] private PlayerController _playerController;
 
-        [Header("Camera Speed Settings")]
+		[Header("Camera Speed Settings")]
 		[Tooltip("The speed the camera uses to rotate around the x-axis")]
 		[SerializeField] private float _pitchSpeed = 100f;
 		[Tooltip("The speed the camera uses to rotate around the y-axis")]
@@ -65,7 +63,6 @@ namespace UEGP3.CameraSystem
 		private float _currentDistance;
 		
 		// Initial values of yaw, pitch, distance
-		private float _initialYaw;
 		private float _initialPitch;
 		private float _initialDistance;
 	
@@ -78,12 +75,10 @@ namespace UEGP3.CameraSystem
 			_defaultPosition = _cameraPivot.position - transform.position;
 
 			// Set initial values
-			_initialYaw = transform.rotation.eulerAngles.y;
 			_initialPitch = transform.rotation.eulerAngles.x;
 			_initialDistance = _defaultPosition.magnitude;
 
 			// Set current values to initial values
-			_currentYaw = _initialYaw;
 			_currentPitch = _initialPitch;
 			_currentDistance = _initialDistance;
 
@@ -100,7 +95,7 @@ namespace UEGP3.CameraSystem
 		{
 #if UNITY_EDITOR
 			// Check if the cursor was enabled/disabled in the inspector
-			//EditorCheckLockCursor();
+			EditorCheckLockCursor();
 #endif
 			// Do not take any input into account, if camera is currently resetting
 			if (_isResetting)
@@ -194,29 +189,28 @@ namespace UEGP3.CameraSystem
 			{
 				// Code
 				t += Time.deltaTime / _resetToInitialStateDuration;
-
-                // Lerp values from t0 to initial values
-
-                _currentYaw = Mathf.Lerp(currentYaw, _playerGraphic.transform.eulerAngles.y, t);
+				
+				// Lerp values from t0 to initial values
+				_currentYaw = Mathf.Lerp(currentYaw, _playerController.CurrentYaw, t);
 				_currentPitch = Mathf.Lerp(currentPitch, _initialPitch, t);
 				_currentDistance = Mathf.Lerp(currentDistance, _initialDistance, t);
 				
 				yield return new WaitForEndOfFrame();
 			}
-
-            // Resetting done
-            _isResetting = false;
+			
+			// Resetting done
+			_isResetting = false;
 		}
 
 #if UNITY_EDITOR
 		/// <summary>
 		/// Editor-only method to check if the cursor needs to be locked or not
 		/// </summary>
-		//private void EditorCheckLockCursor()
-		//{
-		//	Cursor.visible = !_lockCursor;
-		//	Cursor.lockState = _lockCursor ? CursorLockMode.Locked : CursorLockMode.None;
+		private void EditorCheckLockCursor()
+		{
+			Cursor.visible = !_lockCursor;
+			Cursor.lockState = _lockCursor ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 #endif
 	}
-//}
+}

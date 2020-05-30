@@ -4,6 +4,12 @@ namespace UEGP3.InventorySystem
 {
 	public abstract class Item : ScriptableObject
 	{
+		public delegate void UseItemAction(Item item);
+		/// <summary>
+		/// Event fired when an item gets used.
+		/// </summary>
+		public static event UseItemAction OnItemUsed;
+		
 		[Tooltip("The name of the item")] [SerializeField]
 		protected string _itemName;
 		[Tooltip("Short description of the item, shown to the player")] [SerializeField]
@@ -14,10 +20,10 @@ namespace UEGP3.InventorySystem
 		private bool _consumeUponUse;
 		[Tooltip("A unique item can not be stacked in the players inventory")] [SerializeField]
 		private bool _isUnique;
-        [SerializeField]
-        private GameObject _itemMesh;
-        [SerializeField]
-        private string _itemType;
+		[Tooltip("The mesh used for the item pickup")] [SerializeField]
+		private Mesh _itemMesh;
+		[Tooltip("The type of the item")] [SerializeField]
+		private ItemType _itemType;
 		
 		/* // C# Auto-Property
 		public bool ConsumeUponuse { get; set; }
@@ -48,15 +54,18 @@ namespace UEGP3.InventorySystem
 		// public getter only - "readonly"
 		public bool IsUnique => _isUnique;
 		public bool ConsumeUponUse => _consumeUponUse;
-        public string Description => _description;
-        public string ItemName => _itemName;
-        public GameObject ItemMesh => _itemMesh;
-        public string ItemType => _itemType;
-        public Sprite ItemSprite => _itemSprite;
+		public string ItemName => _itemName;
+		public Sprite ItemSprite => _itemSprite;
+		public Mesh ItemMesh => _itemMesh;
+		public ItemType ItemType => _itemType;
+		public string ItemDescription => _description;
 
-        /// <summary>
-        /// Uses the item and executes its effect.
-        /// </summary>
-        public abstract void UseItem();
+		/// <summary>
+		/// Uses the item and executes its effect.
+		/// </summary>
+		public virtual void UseItem()
+		{
+			OnItemUsed?.Invoke(this);
+		}
 	}
 }

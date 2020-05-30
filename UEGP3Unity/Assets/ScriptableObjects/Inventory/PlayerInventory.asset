@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09069efae24c9fa87e382cf6e06c66, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
+  _maximumSize: 5
+  _bags:
+  - {fileID: 11400000, guid: d6223faa46917c14dab0348bdaef6384, type: 2}
+  - {fileID: 11400000, guid: d22b7d4218b7ca44893970044f4fa514, type: 2}
+  - {fileID: 11400000, guid: 09043f6e421781a4db906ec02496ee4c, type: 2}
+  _inventory: {fileID: 0}
