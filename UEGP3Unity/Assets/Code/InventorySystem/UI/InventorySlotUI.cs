@@ -151,7 +151,7 @@ namespace UEGP3.InventorySystem.UI
 			// only use the item if not null. Trigger Sound of Used item and the usage of the item
 			if (_item != null)
             {               
-                audioHandler.DoUseItemSound(_item.ItemType);
+                audioHandler.DoUseItemSound(_item);
                 _item.UseItem();
             }
         }

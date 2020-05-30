@@ -19,3 +19,4 @@ MonoBehaviour:
   _isUnique: 0
   _itemMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   _itemType: {fileID: 11400000, guid: 0998831b20c50894e980fd315eec14f7, type: 2}
+  _itemAudio: {fileID: 11400000, guid: 528bada299e03f34fa21461228b26446, type: 2}

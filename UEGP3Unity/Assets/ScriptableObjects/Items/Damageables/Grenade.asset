@@ -19,4 +19,5 @@ MonoBehaviour:
   _isUnique: 0
   _itemMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   _itemType: {fileID: 11400000, guid: 982830630545a3749846dafe305e1d40, type: 2}
+  _itemAudio: {fileID: 11400000, guid: fad9400b6f2cc674eb831889fcfdff6c, type: 2}
   _damage: 5

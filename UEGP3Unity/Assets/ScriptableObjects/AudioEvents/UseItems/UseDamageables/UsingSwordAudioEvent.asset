@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05afd142c2754e95af5861804a5e2f60, type: 3}
-  m_Name: UsingPotionAudioEvent
+  m_Name: UsingSwordAudioEvent
   m_EditorClassIdentifier: 
   _clips:
-  - {fileID: 8300000, guid: c7c558cf6e175744ab1509a881a8f9c6, type: 3}
+  - {fileID: 8300000, guid: 70e8c28c7ee2a4142a5db132d1b6222e, type: 3}
   _randomizeVolume: 1
   _volume: 0
   _minVolume: 0.15

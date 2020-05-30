@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05afd142c2754e95af5861804a5e2f60, type: 3}
-  m_Name: UsingPotionAudioEvent
+  m_Name: UsingLargeHealthPotionAudioEvent
   m_EditorClassIdentifier: 
   _clips:
   - {fileID: 8300000, guid: c7c558cf6e175744ab1509a881a8f9c6, type: 3}
