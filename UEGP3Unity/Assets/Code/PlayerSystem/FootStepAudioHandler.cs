@@ -1,13 +1,13 @@
 ﻿using System;
 using UEGP3.Core;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace UEGP3.PlayerSystem
 {
 	[RequireComponent(typeof(AudioSource))]
 	public class FootStepAudioHandler : MonoBehaviour
 	{
-		[Tooltip("The audio event that should be played when the animation event is happening")] [SerializeField]
 		private ScriptableAudioEvent _footstepAudioEvent;
 
 		private AudioSource _audioSource;
@@ -18,9 +18,10 @@ namespace UEGP3.PlayerSystem
 		}
 
 		// Called as an animation event
-		private void DoFootStepSound()
+		private void DoFootStepSound(AnimationEvent animationEvent)
 		{
-			_footstepAudioEvent.Play(_audioSource);
+            ScriptableAudioEvent _footstepAudioEvent = animationEvent.objectReferenceParameter as ScriptableAudioEvent;
+            _footstepAudioEvent.Play(_audioSource);
 		}
 	}
 }
