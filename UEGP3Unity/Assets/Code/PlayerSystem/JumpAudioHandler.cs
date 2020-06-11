@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace UEGP3.PlayerSystem
 {
+    // Good job. Adde ruhig auch für weniger komplizierte Scripts wie dieses Kommentare + Tooltips. Ist etwas arbeit, gibt aber Punkte und macht Code auf lange Sicht übersichtlicher! ;)
     [RequireComponent(typeof(AudioSource))]
     public class JumpAudioHandler : MonoBehaviour
     {
@@ -15,7 +16,7 @@ namespace UEGP3.PlayerSystem
         private ScriptableAudioEvent _landingAudioEvent;
 
         private AudioSource _audioSource;
-
+        
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();

@@ -25,6 +25,7 @@ namespace UEGP3.CustomPlayables
 				// If the current clip is being played, execute logic
 				if (inputWeight > 0)
                 {
+	                // TODO siehe unblockinputplayablemixerbehaviour
                     PlayerController playerController;
                     Player player;
                     ThirdPersonFreeLookCamera thirdPersonFreeLookCamera;

@@ -7,7 +7,6 @@ namespace UEGP3.PlayerSystem
 	/// <summary>
 	/// Animation handler that observes several player states and translates them into animation states.
 	/// </summary>
-	[RequireComponent(typeof(Animator))]
 	public class PlayerAnimationHandler : MonoBehaviour
 	{
 		// Cache all Animator-Strings because this is faster than using strings

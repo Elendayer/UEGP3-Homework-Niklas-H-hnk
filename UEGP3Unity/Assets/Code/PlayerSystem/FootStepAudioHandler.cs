@@ -21,6 +21,12 @@ namespace UEGP3.PlayerSystem
 		private void DoFootStepSound(AnimationEvent animationEvent)
 		{
             ScriptableAudioEvent _footstepAudioEvent = animationEvent.objectReferenceParameter as ScriptableAudioEvent;
+            // TODO 
+            // an dieser Stelle wäre ein Null-check praktisch, falls es kein footstepAudioEvent gibt:
+            // if (_footstepAudioEvent == null)
+            // {
+            //  	return;
+            // }
             _footstepAudioEvent.Play(_audioSource);
 		}
 	}
